@@ -20,6 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok:1.16.20'
     implementation group: 'org.postgresql', name: 'postgresql'
+    compile 'com.google.code.gson:gson:2.8.5'
 }
 
 test {
