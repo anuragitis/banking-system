@@ -1,0 +1,15 @@
+.idea
+build
+.gradle
+juspay-sdk.log
+.DS_Store
+.idea
+build
+.gradle
+lib
+out
+.iml
+logs
+.classpath
+.project
+.settings/
