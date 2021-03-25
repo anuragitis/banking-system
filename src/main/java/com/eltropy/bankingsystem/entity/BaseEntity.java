@@ -16,7 +16,6 @@ import java.util.Date;
 @Getter
 @Setter
 public class BaseEntity implements Serializable {
-    private static final long serialVersionUID = 1212006652955791818L;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -26,35 +25,4 @@ public class BaseEntity implements Serializable {
     private Date updatedDate;
     private String updatedBy;
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
 }

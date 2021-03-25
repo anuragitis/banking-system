@@ -2,20 +2,22 @@ package com.eltropy.bankingsystem.entity;
 
 import lombok.*;
 import javax.persistence.*;
+
+import com.eltropy.bankingsystem.entity.Employee.EmployeeStatus;
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 
 @Entity
-@Table(name = "employee")
+@Table(name = "customer")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
+    @Column(name = "customer_id")
     private Long id;
 
     @NonNull
@@ -40,20 +42,18 @@ public class Employee {
     @Column(name = "phone", unique = true)
     private String phone;
     
-    @SerializedName("date_of_joining")
-    @Column(name = "date_of_joining")
-    private Date dateOfJoining;
-    
-    @SerializedName("status")
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private EmployeeStatus status;
-    
     @SerializedName("address")
     @Column(name = "address")
     private String address;
     
-    public enum EmployeeStatus {
+    private String kyc;
+    
+    @SerializedName("status")
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private CustomerStatus status;
+    
+    public enum CustomerStatus {
     	ACTIVE, BLOCKED, INACTIVE;
     }
 
