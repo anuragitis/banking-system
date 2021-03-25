@@ -33,14 +33,9 @@ public class AdminController {
         }
     }
     
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "employee/delete", method = RequestMethod.DELETE)
     public void deleteEmployee(@RequestParam Long employeeId) throws Exception {
     	employeeService.delete(employeeId);
-    }
-    
-    @RequestMapping(value = "test", method = RequestMethod.GET)
-    public String test() throws Exception {
-    	return "abc";
     }
 }

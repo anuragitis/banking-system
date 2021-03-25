@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.eltropy.bankingsystem.apimodel.InterestRequest;
@@ -38,6 +39,7 @@ public class EmployeeController {
 	@Autowired
 	CustomerService customerService;
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/create", method = RequestMethod.POST)
     public ResponseEntity<Object> createEmployee(@RequestBody Account employee) throws CustomException {
         try {
@@ -49,6 +51,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/delete", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteAccount(@RequestParam Long accountId) throws CustomException {
         try {
@@ -60,6 +63,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "customer/create", method = RequestMethod.POST)
     public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) throws CustomException {
         try {
@@ -71,6 +75,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "customer/delete", method = RequestMethod.DELETE)
     public ResponseEntity<Object> deleteCustomer(@RequestParam Long customerId) throws CustomException {
         try {
@@ -82,6 +87,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "customer/get", method = RequestMethod.GET)
     public ResponseEntity<Object> getCustomerDetails(@RequestParam Long customerId) throws CustomException {
         try {
@@ -93,6 +99,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/getBalance", method = RequestMethod.GET)
     public ResponseEntity<Object> getAccountDetails(@RequestParam Long accountId) throws CustomException {
         try {
@@ -104,6 +111,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/link/customer", method = RequestMethod.GET)
     public ResponseEntity<Object> getAccountDetails(@RequestParam Long accountId,
     		@RequestParam Long customerId) throws CustomException {
@@ -116,6 +124,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "customer/updateKyc", method = RequestMethod.PUT)
     public ResponseEntity<Object> getCustomerDetails(@RequestBody Customer customer) throws CustomException {
         try {
@@ -127,6 +136,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/transferMoney", method = RequestMethod.POST)
     public ResponseEntity<Object> transferMoney(@RequestBody TransferMoneyRequest transferMoneyRequest) throws CustomException {
         try {
@@ -138,6 +148,7 @@ public class EmployeeController {
         }
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/generateStatementPdf", method = RequestMethod.PUT)
     public void printAccountStatement(@RequestBody TransferMoneyRequest transferMoneyRequest, HttpServletResponse response) throws DocumentException, IOException {
         List<AccountTransaction> transactions = accountService.getAccountTransaction(transferMoneyRequest.getFromAccountId());
@@ -151,6 +162,7 @@ public class EmployeeController {
         exporter.export(response);
     }
     
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @RequestMapping(value = "account/addInterest", method = RequestMethod.POST)
     public ResponseEntity<Object> addInterest(@RequestBody InterestRequest interestRequest) throws CustomException {
         try {
