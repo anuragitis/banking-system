@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 	@Override
-	public Customer getCustomerDetails(Long customerId) {
+	public Customer getCustomerDetails(Long customerId) throws CustomException{
 		Optional<Customer> customer = customerRepository.findById(customerId);
 		if (customer.isPresent()) {
 			return customer.get();

@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.eltropy.bankingsystem.apimodel.InterestRequest;
@@ -17,6 +19,7 @@ import com.eltropy.bankingsystem.apimodel.TransferMoneyRequest;
 import com.eltropy.bankingsystem.entity.Account;
 import com.eltropy.bankingsystem.entity.AccountTransaction;
 import com.eltropy.bankingsystem.entity.Customer;
+import com.eltropy.bankingsystem.error.CustomException;
 import com.eltropy.bankingsystem.service.AccountService;
 import com.eltropy.bankingsystem.service.CustomerService;
 import com.eltropy.bankingsystem.util.PDFExporter;
@@ -36,49 +39,103 @@ public class EmployeeController {
 	CustomerService customerService;
     
     @RequestMapping(value = "account/create", method = RequestMethod.POST)
-    public Account createEmployee(@RequestBody Account employee) throws Exception {
-        return accountService.create(employee);
+    public ResponseEntity<Object> createEmployee(@RequestBody Account employee) throws CustomException {
+        try {
+        	Account account = accountService.create(employee);
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("exception.getMessage() : {}", exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "account/delete", method = RequestMethod.DELETE)
-    public void deleteAccount(@RequestParam Long accountId) throws Exception {
-    	accountService.delete(accountId);
+    public ResponseEntity<Object> deleteAccount(@RequestParam Long accountId) throws CustomException {
+        try {
+        	accountService.delete(accountId);
+            return new ResponseEntity<>("Account is deleted : ", HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("exception.getMessage() : {}", exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "customer/create", method = RequestMethod.POST)
-    public Customer createCustomer(@RequestBody Customer customer) throws Exception {
-        return customerService.create(customer);
+    public ResponseEntity<Object> createCustomer(@RequestBody Customer customer) throws CustomException {
+        try {
+        	Customer customerNew = customerService.create(customer);
+            return new ResponseEntity<>(customerNew, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("exception.getMessage() : {}", exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "customer/delete", method = RequestMethod.DELETE)
-    public void deleteCustomer(@RequestParam Long customerId) throws Exception {
-    	customerService.delete(customerId);
+    public ResponseEntity<Object> deleteCustomer(@RequestParam Long customerId) throws CustomException {
+        try {
+        	customerService.delete(customerId);
+            return new ResponseEntity<>("Customer is deleted : ", HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("exception.getMessage() : {}", exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "customer/get", method = RequestMethod.GET)
-    public Customer getCustomerDetails(@RequestParam Long customerId) throws Exception {
-    	return customerService.getCustomerDetails(customerId);
+    public ResponseEntity<Object> getCustomerDetails(@RequestParam Long customerId) throws CustomException {
+        try {
+            Customer customer = customerService.getCustomerDetails(customerId);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in getting the customer details : {}, {}", customerId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "account/getBalance", method = RequestMethod.GET)
-    public Account getAccountDetails(@RequestParam Long accountId) throws Exception {
-    	return accountService.getAccountDetails(accountId);
+    public ResponseEntity<Object> getAccountDetails(@RequestParam Long accountId) throws CustomException {
+        try {
+        	Account account = accountService.getAccountDetails(accountId);
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in getting the account balance : {}, {}", accountId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "account/link/customer", method = RequestMethod.GET)
-    public Account getAccountDetails(@RequestParam Long accountId,
-    		@RequestParam Long customerId) throws Exception {
-    	return accountService.linkCustomer(accountId, customerId);
+    public ResponseEntity<Object> getAccountDetails(@RequestParam Long accountId,
+    		@RequestParam Long customerId) throws CustomException {
+        try {
+        	Account account = accountService.linkCustomer(accountId, customerId);
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in linking account : {}, {}", accountId, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "customer/updateKyc", method = RequestMethod.PUT)
-    public Customer getCustomerDetails(@RequestBody Customer customer) throws Exception {
-    	return customerService.updateKyc(customer);
+    public ResponseEntity<Object> getCustomerDetails(@RequestBody Customer customer) throws CustomException {
+        try {
+        	Customer customerUpdated =  customerService.updateKyc(customer);
+            return new ResponseEntity<>(customerUpdated, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in updating kyc : {}, {}", customer.getId(), exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "account/transferMoney", method = RequestMethod.POST)
-    public List<Account> transferMoney(@RequestBody TransferMoneyRequest transferMoneyRequest) throws Exception {
-    	return accountService.transferMoney(transferMoneyRequest);
+    public ResponseEntity<Object> transferMoney(@RequestBody TransferMoneyRequest transferMoneyRequest) throws CustomException {
+        try {
+        	List<Account> accounts =  accountService.transferMoney(transferMoneyRequest);
+            return new ResponseEntity<>(accounts, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in transferMoney : {}, {}", transferMoneyRequest, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
     @RequestMapping(value = "account/generateStatementPdf", method = RequestMethod.PUT)
@@ -95,8 +152,14 @@ public class EmployeeController {
     }
     
     @RequestMapping(value = "account/addInterest", method = RequestMethod.POST)
-    public Account addInterest(@RequestBody InterestRequest interestRequest) throws Exception {
-    	return accountService.addInterest(interestRequest);
+    public ResponseEntity<Object> addInterest(@RequestBody InterestRequest interestRequest) throws CustomException {
+        try {
+        	Account account =  accountService.addInterest(interestRequest);
+            return new ResponseEntity<>(account, HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error in addInterest : {}, {}", interestRequest, exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     
 
