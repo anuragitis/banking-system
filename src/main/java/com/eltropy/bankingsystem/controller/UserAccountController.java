@@ -5,7 +5,6 @@ import com.eltropy.bankingsystem.apimodel.LoginRequest;
 import com.eltropy.bankingsystem.apimodel.UserAccountModel;
 import com.eltropy.bankingsystem.apimodel.LoginResponse;
 import com.eltropy.bankingsystem.service.UserAccountService;
-//import com.eltropy.bankingsystem.utils.MessageResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,12 +30,7 @@ public class UserAccountController {
     @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody UserAccountModel userAccountModel) {
         try {
-//            if (userAccountRepository.existsByUsername(userAccountModel.getUsername())) {
-//                return ResponseEntity.badRequest().body(new MessageResponse("412", "Error: Username is already taken!"));
-//            }
-//            if (userAccountRepository.existsByEmail(userAccountModel.getEmail())) {
-//                return ResponseEntity.badRequest().body(new MessageResponse("412", "Error: Email is already in use!"));
-//            }
+
             userAccountService.register(userAccountModel);
             return ResponseEntity.ok("User registered successfully!");
         } catch (Exception ex) {

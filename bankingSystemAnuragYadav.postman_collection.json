@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "cc673946-ce0f-44f0-bb5a-acfe3c06ff6e",
+		"name": "bankingSystemAnuragYadav",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"anu\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"anu4@gmail.com\",\n    \"phone\": \"9457732419\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/v1/employee/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"v1",
+						"employee",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\" : \"600\",\n    \"type\": \"SAVING\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/customer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"customer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Customer Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/customer/get?customerId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"customer",
+						"get"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Account Balance",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/eltropy/api/employee/v1/account/getBalance?accountId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eltropy",
+						"api",
+						"employee",
+						"v1",
+						"account",
+						"getBalance"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/delete?accountId=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "accountId",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Customer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/customer/delete?customerId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"customer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Employee",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/v1/employee/delete?employeeId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"v1",
+						"employee",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "link customer and account",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"cus3\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"cus3@gmail.com\",\n    \"phone\": \"9457732422\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/link/customer?customerId=1&accountId=21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"link",
+						"customer"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						},
+						{
+							"key": "accountId",
+							"value": "21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update customer kyc",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"2\",\n    \"kyc\": \"kyceee\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/customer/updateKyc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"customer",
+						"updateKyc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transafer money",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fromAccountId\": \"2\",\n    \"toAccountId\": \"1\",\n    \"amount\" : \"33000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/transferMoney",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"transferMoney"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generate transaction pdf",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fromAccountId\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/generateStatementPdf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"generateStatementPdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Interest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountId\": \"1\",\n    \"timeInYears\" : \"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/v1/account/addInterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"v1",
+						"account",
+						"addInterest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register user - one time activity - No auth is required.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"registerAdmin1\",\n    \"email\" : \"registerAdmin1@gmail.com\",\n    \"password\": \"1234567\",\n    \"contactNo\" : \"9457732423\",\n    \"firstName\" : \"abcasfd\",\n    \"lastName\" : \"efasdg\",\n    \"role\":[\"user\",\"admin\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee - only admin can delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZWdpc3RlckFkbWluMSIsImlhdCI6MTYxNjY3MDMzOSwiZXhwIjoxNjE2NzU2NzM5fQ.HfnhaxWfD2O1LH851oB14g0S87jfUPzGxBfjWsyw09yijWZ1VkBb1BGB8Akj-284_FDsbtSsxzUiUs0_pUJNgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/v1/employee/delete?employeeId=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"v1",
+						"employee",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee - only admin can create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyZWdpc3RlckFkbWluMSIsImlhdCI6MTYxNjY3MDMzOSwiZXhwIjoxNjE2NzU2NzM5fQ.HfnhaxWfD2O1LH851oB14g0S87jfUPzGxBfjWsyw09yijWZ1VkBb1BGB8Akj-284_FDsbtSsxzUiUs0_pUJNgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"anu11\",\n    \"lastName\": \"yadav\",\n    \"email\" : \"anu411@gmail.com\",\n    \"phone\": \"945773241912\",\n    \"status\" : \"ACTIVE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/v1/employee/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"v1",
+						"employee",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login to - get Bearer token which can we used for other requests.",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"registerAdmin1\",\n    \"password\": \"1234567\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
