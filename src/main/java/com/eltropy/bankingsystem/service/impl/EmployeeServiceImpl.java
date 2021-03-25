@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return employeeRepository.save(employee);
         } catch (Exception e) {
             log.error("Saving the employee details failed ", e);
-            throw new CustomException(INTERNAL_SERVER_ERROR, "Invalid employee");
+            throw new CustomException(EMPLOYEE_ALREADY_FOUND, "employee already exists");
         }
 
     }

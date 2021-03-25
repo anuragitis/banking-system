@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.eltropy.bankingsystem.entity.Account;
 import com.eltropy.bankingsystem.entity.Employee;
+import com.eltropy.bankingsystem.error.CustomException;
 import com.eltropy.bankingsystem.service.EmployeeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,19 +24,25 @@ public class AdminController {
     
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "employee/create", method = RequestMethod.POST)
-    public ResponseEntity<Object> createEmployee(@RequestBody Employee employee) throws Exception {
+    public ResponseEntity<Object> createEmployee(@RequestBody Employee employee) throws CustomException {
         try {
         	Employee employeeUpdate = employeeService.create(employee);
             return new ResponseEntity<>(employeeUpdate, HttpStatus.OK);
         } catch (Exception exception) {
-            log.error("exception.getMessage() : {}", exception.getMessage());
+            log.error("Error while creating employee : {}", exception.getMessage());
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
     
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "employee/delete", method = RequestMethod.DELETE)
-    public void deleteEmployee(@RequestParam Long employeeId) throws Exception {
-    	employeeService.delete(employeeId);
+    public ResponseEntity<Object> deleteEmployee(@RequestParam Long employeeId) throws CustomException {
+    	try {
+        	employeeService.delete(employeeId);
+            return new ResponseEntity<>(employeeId + "deleted", HttpStatus.OK);
+        } catch (Exception exception) {
+            log.error("Error while deleting employee : {}", exception.getMessage());
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
